@@ -24,7 +24,7 @@
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
 | name              | string  | null: false |
-| detail            | text    | null: false |
+| detail            | string  | null: false |
 | item_condition_id | integer | null: false |
 | fee_burdened_id   | integer | null: false |
 | prefecture_id     | integer | null: false |
@@ -38,7 +38,7 @@
 - has_one :purchase
 
 
-## purchases テーブル
+## purchase テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -52,7 +52,7 @@
 - has_one :address
 
 
-## addresses テーブル
+## address テーブル
 
 | Column         | Type    | Options                        |
 | -------------- | ------- | ------------------------------ |
