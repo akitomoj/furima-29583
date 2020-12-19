@@ -16,21 +16,21 @@
 ### Association
 
 - has_many :items
-- has_many :purchase
+- has_many :purchases
 
 
 ## items テーブル
 
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
-| item_name         | string  | null: false |
-| item_detail       | string  | null: false |
+| name              | string  | null: false |
+| detail            | string  | null: false |
 | item_condition_id | integer | null: false |
 | fee_burdened_id   | integer | null: false |
 | prefecture_id     | integer | null: false |
 | shipping_date_id  | integer | null: false |
-| category          | string  | null: false |
-| price             | string  | null: false |
+| category_id       | string  | null: false |
+| price             | integer | null: false |
 
 ### Association
 
