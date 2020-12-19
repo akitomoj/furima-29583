@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| user              | references | null: false, foreign_key: true |
-| name              | string     | null: false                    |
-| detail            | text       | null: false                    |
-| item_condition_id | integer    | null: false                    |
-| fee_burdened_id   | integer    | null: false                    |
-| prefecture_id     | integer    | null: false                    |
-| shipping_date_id  | integer    | null: false                    |
-| category_id       | integer    | null: false                    |
-| price             | integer    | null: false                    |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| name             | string     | null: false                    |
+| detail           | text       | null: false                    |
+| condition_id     | integer    | null: false                    |
+| fee_burdened_id  | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| shipping_date_id | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
+| price            | integer    | null: false                    |
 
 ### Association
 
@@ -39,7 +39,7 @@
 - has_one :purchase
 
 
-## purchase テーブル
+## purchases テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -53,11 +53,11 @@
 - has_one :address
 
 
-## address テーブル
+## addresses テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| purchase_id    | references | null: false, foreign_key: true |
+| purchase       | references | null: false, foreign_key: true |
 | post_code      | string     | null: false                    |
 | prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
