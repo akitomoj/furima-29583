@@ -29,7 +29,7 @@
 | fee_burdened_id   | integer | null: false |
 | prefecture_id     | integer | null: false |
 | shipping_date_id  | integer | null: false |
-| category_id       | string  | null: false |
+| category_id       | integer | null: false |
 | price             | integer | null: false |
 
 ### Association
