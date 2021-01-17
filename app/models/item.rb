@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   has_one :purchase
   has_one_attached :image
 
+  validates :image,             presence: true
   validates :name,              presence: true, length: { maximum: 40 }
   validates :detail,            presence: true, length: { maximum: 1000 }
 
@@ -20,6 +21,6 @@ class Item < ApplicationRecord
     validates :shipping_date_id
     validates :category_id
   end
-  
+
   validates :price,             presence: true, numericality: { greater_than: 299, less_than: 10000000 }
 end
