@@ -4,10 +4,10 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= @item.name %>
+      <%= "商品名" %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @item.image, class:"item-box-img" if @item.image.attached? %>
+      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <%# if item.id == @item_id %>
       <div class='sold-out'>
@@ -18,10 +18,10 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ <%= @item.price %>
+        ¥ 999,999,999
       </span>
       <span class="item-postage">
-        <%= @item.fee_burdened.name %>
+        <%= '配送料負担' %>
       </span>
     </div>
 
@@ -45,27 +45,27 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @nickname.nickname %></td>
+          <td class="detail-value"><%= "出品者名" %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.category.name %></td>
+          <td class="detail-value"><%= "カテゴリー名" %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @item.condition.name %></td>
+          <td class="detail-value"><%= "商品の状態" %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.fee_burdened.name %></td>
+          <td class="detail-value"><%= "発送料の負担" %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @item.prefecture.name %></td>
+          <td class="detail-value"><%= "発送元の地域" %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.shipping_date.name %></td>
+          <td class="detail-value"><%= "発送日の目安" %></td>
         </tr>
       </tbody>
     </table>
