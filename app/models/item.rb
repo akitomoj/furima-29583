@@ -24,5 +24,5 @@ class Item < ApplicationRecord
     validates :category_id
   end
 
-  validates :price,             presence: true, numericality: { greater_than: 299, less_than: 10000000 }
+  validates :price, presence: true, numericality: { greater_than: 299, less_than: 10_000_000 }
 end
