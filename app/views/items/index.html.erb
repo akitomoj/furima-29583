@@ -132,12 +132,13 @@
             <div class='item-img-content'>
               <%= image_tag item.image, class: "item-img" if item.image.attached? %>
 
-              <% if item.id == @item_id %>
+              <%# sold outの条件分岐 %>
+              <%# if item.id == @item_id %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
-              <% end %>
-
+              <%# end %>
+              <%# /sold outの条件分岐 %>
             </div>
             <div class='item-info'>
               <h3 class='item-name'>
