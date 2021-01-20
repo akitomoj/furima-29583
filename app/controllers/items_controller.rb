@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :item_find, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
 
   def index
@@ -19,11 +20,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-
   end
 
   def update
@@ -35,6 +34,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if user_signed_in? && (current_user.id == @item.user_id)
+      if @item.destroy
+        redirect_to root_path
+      else
+        render :show
+      end
+    end
+  end
+
   private
 
   def item_params
@@ -42,7 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def correct_user
-    @item = Item.find(params[:id])
     unless user_signed_in?
       redirect_to new_user_session_path 
     end
@@ -51,4 +59,7 @@ class ItemsController < ApplicationController
     end
   end
   
+  def item_find
+    @item = Item.find(params[:id])
+  end
 end
