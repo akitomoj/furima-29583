@@ -8,7 +8,7 @@ RSpec.describe ItemPurchase, type: :model do
   describe '商品購入での住所情報' do
     context '住所登録できるとき' do
       # 8要素 = :purchase_id, :post_code, :prefecture_id, :city, :address_number, :building, :phone_number
-      it '8要素が存在すれば登録できる' do
+      it '8要素とtokenが存在すれば登録できる' do
         expect(@address).to be_valid
       end
       it 'buildingがnilでも登録できる' do
@@ -78,7 +78,11 @@ RSpec.describe ItemPurchase, type: :model do
         @address.valid?
         expect(@address.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")
       end
-      
+      it 'tokenが空では登録できない' do
+        @address.token = nil
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
   
