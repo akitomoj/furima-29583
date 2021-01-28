@@ -133,11 +133,11 @@
               <%= image_tag item.image, class: "item-img" if item.image.attached? %>
 
               <%# sold outの条件分岐 %>
-              <%# if item.id == @item_id %>
+              <% if Purchase.where(item_id: item.id).exists? %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
-              <%# end %>
+              <% end %>
               <%# /sold outの条件分岐 %>
             </div>
             <div class='item-info'>
