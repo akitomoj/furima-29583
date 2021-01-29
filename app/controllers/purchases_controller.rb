@@ -23,9 +23,6 @@ class PurchasesController < ApplicationController
   end
 
   def correct_purchase
-    unless user_signed_in?
-      redirect_to new_user_session_path 
-    end
     if user_signed_in? && (current_user.id == @item.user_id)
       redirect_to root_path
     elsif Purchase.where(item_id: params[:item_id]).exists?

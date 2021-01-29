@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
-  # ログインしていない場合はログイン画面に遷移する記述（後段で記述）
-  # before_action :authenticate_user!
-  # /ログインしていない場合はログイン画面に遷移する記述（後段で記述）
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
