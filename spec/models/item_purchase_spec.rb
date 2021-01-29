@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ItemPurchase, type: :model do
   before do
     @address = FactoryBot.build(:item_purchase)
+    @user = FactoryBot.build_stubbed(:user).id
+    @item = FactoryBot.build_stubbed(:item).id
   end
   
   describe '商品購入での住所情報' do
