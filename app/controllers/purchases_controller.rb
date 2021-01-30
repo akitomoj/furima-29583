@@ -24,9 +24,7 @@ class PurchasesController < ApplicationController
   end
 
   def correct_purchase
-    if user_signed_in? && (current_user.id == @item.user_id)
-      redirect_to root_path
-    elsif @item.purchase.present?
+    if user_signed_in? && (current_user.id == @item.user_id) || @item.purchase.present?
       redirect_to root_path
     end
   end
