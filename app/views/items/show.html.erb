@@ -9,7 +9,7 @@
     <div class='item-img-content'>
       <%= image_tag @item.image, class:"item-box-img" if @item.image.attached? %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <% if Purchase.where(item_id: @item.id).exists? %>
+      <% if @item.purchase.present? %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
@@ -26,8 +26,7 @@
     </div>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-    <% if user_signed_in? %>
-      <% unless @item.purchase.present? %>
+    <% if user_signed_in? && @item.purchase.blank? %>
         <% if current_user.id == @item.user_id %>
           <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
           <p class='or-text'>or</p>
@@ -35,7 +34,6 @@
         <% else %>
           <%= link_to '購入画面に進む', item_purchases_path(@item.id), method: :get, class:"item-red-btn"%>
         <% end %>
-      <% end %>
     <% end %>
 
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
