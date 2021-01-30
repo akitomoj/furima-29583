@@ -3,14 +3,16 @@ require 'rails_helper'
 RSpec.describe ItemPurchase, type: :model do
   before do
     @address = FactoryBot.build(:item_purchase)
-    @user = FactoryBot.build_stubbed(:user).id
-    @item = FactoryBot.build_stubbed(:item).id
+    user = FactoryBot.build_stubbed(:user).id
+    item = FactoryBot.build_stubbed(:item).id
+    @address.user_id = user
+    @address.item_id = item
   end
   
   describe '商品購入での住所情報' do
     context '住所登録できるとき' do
       # 8要素 = :purchase_id, :post_code, :prefecture_id, :city, :address_number, :building, :phone_number
-      it '8要素とtokenが存在すれば登録できる' do
+      it '8要素とtoken、user_idとitem_idが存在すれば登録できる' do
         expect(@address).to be_valid
       end
       it 'buildingがnilでも登録できる' do
@@ -31,13 +33,12 @@ RSpec.describe ItemPurchase, type: :model do
       it 'cityが空では登録できない' do
         @address.city = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("City can't be blank", "City is invalid. Input full-width characters.")
+        expect(@address.errors.full_messages).to include("City can't be blank")
       end
       it 'address_numberが空では登録できない' do
         @address.address_number = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Address number can't be blank",
-                    "Address number is invalid. Input full-width characters.")
+        expect(@address.errors.full_messages).to include("Address number can't be blank")
       end
       it 'phone_numberが9文字以下では登録できない' do
         @address.phone_number = '090123456'
@@ -65,16 +66,6 @@ RSpec.describe ItemPurchase, type: :model do
         @address.valid?
         expect(@address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
       end
-      it 'cityが全角日本語以外では登録できない' do
-        @address.city = "1a市でス"
-        @address.valid?
-        expect(@address.errors.full_messages).to include("City is invalid. Input full-width characters.")
-      end
-      it 'address_numberが全角日本語以外では登録できない' do
-        @address.address_number = "1a番地でス"
-        @address.valid?
-        expect(@address.errors.full_messages).to include("Address number is invalid. Input full-width characters.")
-      end
       it 'phone_numberが全角数字だと登録できない' do
         @address.phone_number = '０８０１２３４５６７８'
         @address.valid?
@@ -84,6 +75,16 @@ RSpec.describe ItemPurchase, type: :model do
         @address.token = nil
         @address.valid?
         expect(@address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空では登録できない' do
+        @address.user_id = nil
+        @address.valid?
+        expect(@address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では登録できない' do
+        @address.item_id = nil
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
