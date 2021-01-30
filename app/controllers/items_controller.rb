@@ -52,14 +52,10 @@ class ItemsController < ApplicationController
   end
 
   def correct_user
-    unless user_signed_in?
-      redirect_to new_user_session_path 
-    end
-    if user_signed_in? && (current_user.id != @item.user_id)
-        redirect_to root_path 
-    end
+    redirect_to new_user_session_path unless user_signed_in?
+    redirect_to root_path if user_signed_in? && (current_user.id != @item.user_id)
   end
-  
+
   def item_find
     @item = Item.find(params[:id])
   end
