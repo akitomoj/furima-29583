@@ -21,6 +21,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @texts = @item.messages.includes(:user)
+    @text = Message.new
   end
 
   def edit

@@ -83,8 +83,8 @@
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+    <%= form_with model: [@item, @text], url: item_messages_path(@item.id), local: true do |f| %>
+      <%= f.text_field :text, class: "comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
@@ -94,7 +94,10 @@
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <span>コメントする<span>
       </button>
-    </form>
+    <% end %>
+    <% @texts.reverse_each do |text| %>
+      <p><%= text.text %></p>
+    <% end %>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">

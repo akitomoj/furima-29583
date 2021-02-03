@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_date
 
   belongs_to :user
+  has_many :messages, dependent: :destroy
   has_one :purchase, dependent: :destroy
   has_one_attached :image
 
