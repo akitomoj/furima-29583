@@ -25,6 +25,10 @@
     </div>
     <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
   </div>
+
+  <%if @sns_id.present? %>
+    <%= hidden_field_tag :sns_auth, true %>
+  <% else %>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">パスワード</label>
@@ -40,6 +44,8 @@
     </div>
     <%= f.password_field :password_confirmation, class:"input-default", id:"password-confirmation", placeholder:"同じパスワードを入力して下さい" %>
   </div>
+  <% end %>
+  
   <div class="form-group">
     <p class='form-info-header'>
       本人確認
@@ -95,6 +101,8 @@
       <br>に同意したものとみなします
     </h2>
   </div>
+  <%= link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method: :post %>
+  <%= link_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, method: :post %>
   <div class='register-btn'>
     <%= f.submit "会員登録" ,class:"register-red-btn" %>
   </div>
