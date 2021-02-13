@@ -28,63 +28,62 @@ RSpec.describe ItemPurchase, type: :model do
       it 'post_codeが空では登録できない' do
         @address.post_code = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid. Include hyphen(-)')
+        expect(@address.errors.full_messages).to include("郵便番号を入力してください", "郵便番号は無効です。ハイフン(-)を含めてください")
       end
       it 'cityが空では登録できない' do
         @address.city = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("City can't be blank")
+        expect(@address.errors.full_messages).to include("市区町村を入力してください")
       end
       it 'address_numberが空では登録できない' do
         @address.address_number = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Address number can't be blank")
+        expect(@address.errors.full_messages).to include("建物名を入力してください")
       end
       it 'phone_numberが9文字以下では登録できない' do
         @address.phone_number = '090123456'
         @address.valid?
-        expect(@address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
+        expect(@address.errors.full_messages).to include('電話番号は無効です。ハイフン(-)を含めてください')
       end
       it 'phone_numberが12文字以上では登録できない' do
         @address.phone_number = '080123456789'
         @address.valid?
-        expect(@address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
+        expect(@address.errors.full_messages).to include('電話番号は無効です。ハイフン(-)を含めてください')
       end
       it 'prefecture_idが1では登録できない' do
         @address.prefecture_id = 1
         @address.valid?
-        expect(@address.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@address.errors.full_messages).to include("都道府県を入れてください")
       end
       it 'phone_numberが空では登録できない' do
         @address.phone_number = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Phone number can't be blank",
-                                                         'Phone number is invalid. Include hyphen(-)')
+        expect(@address.errors.full_messages).to include("電話番号を入力してください", "電話番号は無効です。ハイフン(-)を含めてください")
       end
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと登録できない' do
         @address.post_code = '000ー0000'
         @address.valid?
-        expect(@address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
+        expect(@address.errors.full_messages).to include("郵便番号は無効です。ハイフン(-)を含めてください")
       end
       it 'phone_numberが全角数字だと登録できない' do
         @address.phone_number = '０８０１２３４５６７８'
         @address.valid?
-        expect(@address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
+        expect(@address.errors.full_messages).to include("電話番号は無効です。ハイフン(-)を含めてください")
       end
       it 'tokenが空では登録できない' do
         @address.token = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Token can't be blank")
+        expect(@address.errors.full_messages).to include("Tokenを入力してください")
       end
       it 'user_idが空では登録できない' do
         @address.user_id = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("User can't be blank")
+        expect(@address.errors.full_messages).to include("Userを入力してください")
       end
       it 'item_idが空では登録できない' do
         @address.item_id = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Item can't be blank")
+        expect(@address.errors.full_messages).to include("Itemを入力してください")
       end
     end
   end
